@@ -1,0 +1,149 @@
+Pseudocode for Top Trumps Game (Dragon Ball Z Theme)
+
+#Top Trumps Game (Custom Dragon Ball Z Theme)
+
+BEGIN
+
+IMPORT random
+IMPORT time
+
+PRINT ("HELLO & WELCOME to the new and official DRAGON BALL Z TOP TRUMP STYLE CARD GAME!")
+#an opening statement for better user experience.
+
+WAIT 2 seconds()
+
+PRINT("The game rules are very simple and are as follows: -")
+PRINT("You shall be playing against a computer")
+PRINT("You shall get half a deck of cards - same as your opponent.")
+PRINT("Whoever goes first is decided purely by LUCK")
+PRINT("From this point you must choose the best attribute of ANY of your cards and play to win!")
+PRINT("Your chosen card's chosen attribute will be compared against your opponent's and whoever wins... ")
+PRINT("gets to collect that card and use it within their deck of cards, ultimately making them stronger.")
+PRINT("The winner of the round will also then decide the attribute to be compared for the next round")
+PRINT("IF HOWEVER, your card and their card has somehow magically got the exact same power then")
+PRINT("that card goes to a POOL round and whoever wins the next round after that shall receive all those cards")
+PRINT("UNTIL! A player runs out of cards. At that point the game is declared over and scores are updated on the screen.")
+PRINT("Good luck warrior! Show us what you've got! SUPER SAIYAN!")
+# A powerful quote
+PRINT("....................................")
+PRINT("Power comes in response to need, not a desire. You have to create that need - Son Goku")
+PRINT("....................................")
+
+#Load existing user data from database file & intialising variables
+filename = "userData.txt" IN database file
+user_data = [] # empty array list
+
+FOR each line in file:
+    STRIP line of extra spaces
+    SPLIT line at "," into usernameNLvl #username and level
+    APPEND to user_data list
+
+CLOSE file
+
+# New users creations, validating inputs and welcoming returning users.
+PRINT ("Are you a new player? Press Y for Yes or N for No.")
+userType = input.upper()
+CONVERT userType to uppercase
+
+username = "" #variables initialising
+level = 0
+
+
+IF userType == "Y" THEN
+    PRINT ("Enter new username:")
+    username = input()
+
+    usernameExists = FALSE #false flag operation
+
+    FOR each user in user_data:
+        IF user[0] == username THEN
+            SET usernameExists to TRUE
+		break
+
+    IF usernameExists == TRUE THEN
+        PRINT ("Username already exists! Restart game.")
+    ELSE IF username == BLANK THEN
+        PRINT ("Invalid input. Restart game.")
+    ELSE
+        PRINT ("New user created at level 0!")
+        APPEND username and level to userData file
+	CLOSE file
+        CALL classLoop()
+
+ELSE IF userType is "N" THEN
+    PRINT ("Enter your existing username:")
+    username = input()
+
+    IF username == empty THEN
+        PRINT ("Invalid input. Restart game.")
+    ELSE
+        found = FALSE
+        FOR each user in user_data:
+            IF username matches user[0] THEN
+                SET level to user's level
+                SET found to TRUE
+
+        IF found == TRUE THEN
+            PRINT welcome message with saved username and level
+            CALL classLoop()
+        ELSE
+            PRINT ("Username not found! Restart game.")
+
+# Subroutine classLoop: Main Game Logic and Classes ---
+SUBROUTINE classLoop:
+
+    DEFINE class Card with name, strength, speed, stamina
+        CREATE method displayStats to print the stats
+
+    DEFINE class CharacterTings with name and empty hand list
+        CREATE method hasCards to check if hand is not empty
+
+    DEFINE class Player (inherits from CharacterTings) 
+        CREATE method chooseAttribute:
+        DISPLAY card (& stats)
+        print("Pick an attribute from strenght, speed and stamina:")
+         RETURN attribute
+
+    DEFINE class Computer (inherits from CharacterTings)
+        CREATE method chooseAttribute:
+            IF strength is highest THEN pick strength
+            ELSE IF speed is higher than stamina THEN pick speed
+            ELSE pick stamina
+            PRINT computer choice
+
+    #CREATE a deck with 10 characters and stats
+        deck = [
+            Card("Goku", 95, 90, 85),
+            Card("Vegeta", 92, 88, 80),
+            Card("Gohan", 89, 85, 82),
+            Card("Frieza", 85, 87, 75),
+            Card("Piccolo", 80, 78, 85),
+            Card("Trunks", 88, 86, 78),
+            Card("Cell", 90, 83, 80),
+            Card("Majin Buu", 93, 70, 95),
+            Card("Krillin", 65, 72, 68),
+            Card("Tien", 70, 75, 72)
+        ]
+    random.shuffle(deck) #shuffle deck randomly
+
+    SPLIT deck in half:
+        ASSIGN half to playerHand and other half to computerHand
+
+    CREATE player and computer
+
+    INTIALISE round_number to 1
+
+    # MAIN GAME LOOP 
+    WHILE both players have cards: #by using hasCards method
+        print round_Number
+	PLAY round
+	RANDOMLY decide who goes first.
+        COMPARE chosen attribute
+        DETERMINE winner
+        GIVE winning card to winner's hand
+        UPDATE round_number
+	SAVE user level with username.
+
+    END SUBROUTINE
+
+END PROGRAM
