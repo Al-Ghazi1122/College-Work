@@ -1,0 +1,45 @@
+Variables
+
+highScorer
+highScore
+welcomeMessage AND welcomeMessage2
+playerName
+_rules
+_instructions
+diceRandomization
+dice1 + dice 2 + dice3
+ruleCheck
+highScoreCheck
+
+##PRINT statement
+PRINT statement highScorer 
+PRINT statement highScore
+
+PRINT welcomeMessage
+INPUT playerName
+PRINT welcomeMessage2 + playerName
+
+PRINT _rules AND _instructions
+
+---GAMESTART---
+
+MAINLOOP 
+
+1 - 
+OUTPUT ("Please press space/key to get your dice numbers")
+PROCESS diceRandomization [FORLOOP] ##maybe I don't need this
+OUTPUT dice1 + dice2 + dice3
+
+2-
+PROCESS ruleCheck [whileLoop?]
+IF score+ THEN ruleCheck = TRUE =? highScoreCheck1 #A loop by itself
+IF score0 THEN ruleCheck = FALSE =? highScoreCheck2 #An identical loop to the one above but more complicated / Simpler Solution
+
+3 -
+PROCESS highScoreCheck1 
+
+
+
+
+
+
